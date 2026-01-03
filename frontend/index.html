@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toros Automotive | Bahçelievler Oto Servis, Elektronik & Chiptuning</title>
+  <meta name="description" content="Bahçelievler Kocasinan Sanayi Sitesi'nde profesyonel mekanik bakım, oto elektronik ve chiptuning hizmetleri. Hızlı randevu, orijinal yedek parça, 1 yıl garanti." />
+  
+  <link rel="canonical" href="https://www.torosautomotive.com/" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/png" href="./img/mechanic/skyline.jpg">
+
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" 
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Toros Automotive | Güvenli Sürüşün Adresi" />
+  <meta property="og:description" content="Mekanik bakım, oto elektronik ve chiptuning'de uzman ekip. Hızlı randevu, orijinal parça, şeffaf fiyat." />
+  <meta property="og:image" content="https://www.torosautomotive.com/img/og/cover.jpg" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Toros Automotive",
+    "description": "Bahçelievler'de mekanik bakım, oto elektronik ve chiptuning hizmetleri",
+    "url": "https://www.torosautomotive.com/",
+    "telephone": "+90-530-077-7601",
+    "email": "info@torosotomotiv.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kocasinan Merkez, Kocasinan Sanayi Sitesi B1 Blok No:10",
+      "addressLocality": "Bahçelievler",
+      "addressRegion": "İstanbul",
+      "postalCode": "34180",
+      "addressCountry": "TR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.0122451,
+      "longitude": 28.8440681
+    },
+    "openingHours": "Mo-Fr 09:00-19:00, Sa 09:00-17:00",
+    "priceRange": "₺₺"
+  }
+  </script>
+
+  <style>
+    /* UX İyileştirmeleri */
+    .container { max-width: 1200px; }
+    .nav-blur { backdrop-filter: saturate(150%) blur(12px); background-color: rgba(17, 24, 39, 0.85); }
+    [x-cloak] { display: none !important; }
+  </style>
+</head>
+<body class="antialiased text-gray-800 bg-white">
+
+  <header x-data="header()" class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-gray-800">
+   <div class="bg-red-600 text-white text-xs md:text-sm font-bold py-2 text-center relative z-50 overflow-hidden">
+    <div class="container mx-auto px-4 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-fire animate-pulse"></i>
+        <span>ARACINIZIN GİZLİ GÜCÜNÜ AÇIĞA ÇIKARIN! | %20 Yakıt Tasarrufu & %30 Performans Artışı</span>
+        <a href="randevu.html" class="ml-2 underline hover:text-gray-200">Hemen Bilgi Al -></a>
+    </div>
+</div> 
+   
+   <div class="container mx-auto px-4 lg:px-6 py-3 flex items-center">
+      
+      <a href="index.html" class="inline-flex items-center gap-2 flex-shrink-0" aria-label="Ana Sayfa">
+        <img src="./img/mechanic/skyline.jpg" alt="Toros Automotive Logo" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-red-600" />
+        <span class="text-white font-bold text-lg md:text-xl tracking-wide hidden sm:block">TOROS<span class="text-red-600">AUTO</span></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 mx-auto" aria-label="Ana menü">
+        <a href="index.html#about" class="text-gray-300 hover:text-white font-medium transition text-sm xl:text-base">Hakkımızda</a>
+
+        <div class="relative" x-data="{ open: false }" @mouseenter="open=true" @mouseleave="open=false">
+            <button class="inline-flex items-center gap-1 text-gray-300 hover:text-white font-medium transition py-2 text-sm xl:text-base">
+              Araçlar
+              <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+            <div x-cloak x-show="open" x-transition.opacity.duration.200ms class="absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-xl shadow-xl py-2 border-t-4 border-red-600">
+              <a href="araclar.html#binek" class="block px-4 py-3 hover:bg-gray-50 text-gray-800 border-b border-gray-100">
+                <i class="fa-solid fa-car-side w-5 text-red-600 mr-2"></i> Binek Araçlar
+              </a>
+              <a href="araclar.html#ticari" class="block px-4 py-3 hover:bg-gray-50 text-gray-800">
+                <i class="fa-solid fa-truck-front w-5 text-red-600 mr-2"></i> Ticari Araçlar
+              </a>
+            </div>
+        </div>
+
+        <div class="relative" x-data="{ open: false }" @mouseenter="open=true" @mouseleave="open=false">
+          <button class="inline-flex items-center gap-1 text-gray-300 hover:text-white font-medium transition py-2 text-sm xl:text-base">
+            Hizmetlerimiz
+            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div x-cloak x-show="open" x-transition.opacity.duration.200ms class="absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-xl shadow-xl py-2 border-t-4 border-red-600">
+            <a href="index.html#mechanic-services" class="block px-4 py-3 hover:bg-gray-50 text-gray-800"><i class="fa-solid fa-wrench w-5 text-red-600 mr-2"></i> Mekanik Hizmetler</a>
+            <a href="index.html#electronic-services" class="block px-4 py-3 hover:bg-gray-50 text-gray-800"><i class="fa-solid fa-microchip w-5 text-red-600 mr-2"></i> Elektronik Hizmetler</a>
+            <a href="index.html#chiptuning-services" class="block px-4 py-3 hover:bg-gray-50 text-gray-800"><i class="fa-solid fa-gauge-high w-5 text-red-600 mr-2"></i> Chiptuning</a>
+          </div>
+        </div>
+
+        <a href="index.html#menu" class="text-gray-300 hover:text-white font-medium transition text-sm xl:text-base">Ürün & Kategoriler</a>
+        <a href="index.html#references" class="text-gray-300 hover:text-white font-medium transition text-sm xl:text-base">Referanslar</a>
+        <a href="index.html#contact" class="text-gray-300 hover:text-white font-medium transition text-sm xl:text-base">İletişim</a>
+      </nav>
+
+      <div class="hidden lg:block flex-shrink-0">
+        <a href="randevu.html" class="px-6 py-2.5 text-sm font-bold text-white bg-red-600 rounded-full shadow-lg hover:bg-red-700 transition transform hover:-translate-y-0.5">Randevu Al</a>
+      </div>
+
+      <button @click="mobilemenu = !mobilemenu" class="lg:hidden ml-auto p-2 text-white hover:text-red-500 transition">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+    <div x-cloak x-show="mobilemenu" x-collapse class="lg:hidden bg-gray-900 border-t border-gray-800">
+      <div class="flex flex-col p-4 space-y-2">
+        <a href="index.html#about" @click="mobilemenu=false" class="text-gray-300 hover:text-white py-2">Hakkımızda</a>
+        
+        <div x-data="{ subOpen: false }">
+            <button @click="subOpen = !subOpen" class="flex items-center justify-between w-full text-gray-300 hover:text-white py-2">
+              Araçlar <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div x-show="subOpen" x-collapse class="pl-4 border-l-2 border-gray-700 mt-1 space-y-2">
+               <a href="araclar.html#binek" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Binek Araçlar</a>
+               <a href="araclar.html#ticari" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Ticari Araçlar</a>
+            </div>
+        </div>
+
+        <div x-data="{ subOpen: false }">
+          <button @click="subOpen = !subOpen" class="flex items-center justify-between w-full text-gray-300 hover:text-white py-2">
+            Hizmetlerimiz <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div x-show="subOpen" x-collapse class="pl-4 border-l-2 border-gray-700 mt-1 space-y-2">
+             <a href="index.html#mechanic-services" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Mekanik</a>
+             <a href="index.html#electronic-services" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Elektronik</a>
+             <a href="index.html#chiptuning-services" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Chiptuning</a>
+          </div>
+        </div>
+        
+        <a href="index.html#menu" @click="mobilemenu=false" class="text-gray-300 hover:text-white py-2">Ürün & Kategoriler</a>
+        <a href="index.html#contact" @click="mobilemenu=false" class="text-gray-300 hover:text-white py-2">İletişim</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="slider" x-data="slider()" class="relative w-full h-[60vh] sm:h-[85vh] overflow-hidden bg-black">
+    <template x-for="(slide, index) in slides" :key="index">
+      <div x-show="currentIndex===index" x-transition.opacity.duration.1000ms class="absolute inset-0 w-full h-full">
+        <img :src="slide.src" :alt="slide.alt" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+      </div>
+    </template>
+
+    <div class="absolute inset-0 flex items-center justify-center text-center px-4">
+      <div class="max-w-4xl relative z-10 mt-16">
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight drop-shadow-xl">
+          Güvenli Sürüşün <br><span class="text-red-600">Adresi</span>
+        </h1>
+        <p class="mt-4 text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto drop-shadow-md">
+          Bahçelievler'de profesyonel mekanik bakım, elektronik onarım ve performans odaklı chiptuning çözümleri.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#contact" class="px-8 py-4 rounded-full bg-red-600 text-white font-bold shadow-lg hover:bg-red-700 transition w-full sm:w-auto">Hemen Ara</a>
+          <a href="#mechanic-services" class="px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold hover:bg-white/20 transition w-full sm:w-auto">Hizmetleri Keşfet</a>
+        </div>
+      </div>
+    </div>
+
+    <button @click="prev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur hover:bg-red-600 hover:text-white text-white transition flex items-center justify-center z-20">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <button @click="next()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur hover:bg-red-600 hover:text-white text-white transition flex items-center justify-center z-20">
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </section>
+
+  <section id="about" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+      <div class="relative">
+         <img src="./img/slides/camaro ss.jpg" alt="Toros Automotive Atölye" class="w-full rounded-3xl shadow-2xl relative z-10" loading="lazy" />
+        <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-gray-100 rounded-3xl -z-0 hidden md:block"></div>
+        <div class="absolute -top-6 -left-6 w-48 h-48 bg-red-50 rounded-3xl -z-0 hidden md:block"></div>
+      </div>
+      <div>
+        <span class="text-red-600 font-bold uppercase tracking-wider text-sm">Hakkımızda</span>
+        <h2 class="text-3xl md:text-5xl font-bold mt-2 text-gray-900">Bahçelievler'de Profesyonel Servis Deneyimi</h2>
+        <p class="mt-6 text-gray-600 leading-relaxed text-lg">
+          Yılların tecrübesiyle mekanik bakım-onarım, elektronik arıza tespiti ve performans odaklı chiptuning hizmetleri sunuyoruz. 
+          Aracınızın dilinden anlayan uzman ekibimiz, en karmaşık arızaları bile son teknoloji cihazlarla çözer.
+        </p>
+        <ul class="mt-8 space-y-4">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check-circle text-red-600 mt-1"></i>
+            <span class="text-gray-700">Motor, fren, süspansiyon ve şanzıman ağır bakımları</span>
+          </li>
+          <li class="flex items-start gap-3">
+             <i class="fa-solid fa-check-circle text-red-600 mt-1"></i>
+             <span class="text-gray-700">OBD tabanlı arıza tespiti, ECU/ABS/Airbag ünite onarımı</span>
+          </li>
+          <li class="flex items-start gap-3">
+             <i class="fa-solid fa-check-circle text-red-600 mt-1"></i>
+             <span class="text-gray-700">Yakıt tasarrufu ve performans için garantili Chiptuning</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="mechanic-services" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Mekanik Hizmetler</h2>
+        <p class="mt-4 text-gray-600">Aracınızın yola sağlam basması için periyodik bakım, fren, süspansiyon ve motor mekaniğinde uzman dokunuşlar.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article class="bg-white rounded-2xl p-8 shadow hover:shadow-xl transition border-b-4 border-transparent hover:border-red-600">
+          <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-6 text-2xl">
+             <i class="fa-solid fa-oil-can"></i>
+          </div>
+          <h3 class="font-bold text-xl mb-3">Periyodik Bakım</h3>
+          <p class="text-gray-600">Yağ değişimi, filtre (hava, mazot, polen) değişimleri ve 30 nokta genel kontrol.</p>
+        </article>
+        
+        <article class="bg-white rounded-2xl p-8 shadow hover:shadow-xl transition border-b-4 border-transparent hover:border-red-600">
+           <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-6 text-2xl">
+              <i class="fa-solid fa-car-burst"></i>
+           </div>
+           <h3 class="font-bold text-xl mb-3">Fren & Süspansiyon</h3>
+           <p class="text-gray-600">Balata, disk değişimi, amortisör kontrolleri ve rot-balans ayarı.</p>
+        </article>
+
+        <article class="bg-white rounded-2xl p-8 shadow hover:shadow-xl transition border-b-4 border-transparent hover:border-red-600">
+           <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-6 text-2xl">
+              <i class="fa-solid fa-gears"></i>
+           </div>
+           <h3 class="font-bold text-xl mb-3">Şanzıman & Motor</h3>
+           <p class="text-gray-600">Baskı balata, triger seti değişimi, şanzıman yağı ve motor rektefiye işlemleri.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="electronic-services" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Oto Elektronik</h2>
+        <p class="mt-4 text-gray-600">Beyin (ECU) tamiri, gösterge paneli arızaları ve elektriksel sorunların nokta atışı tespiti.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article class="bg-gray-50 rounded-2xl p-8 shadow hover:shadow-lg transition">
+           <i class="fa-solid fa-laptop-code text-4xl text-blue-600 mb-4"></i>
+           <h3 class="font-bold text-xl mb-2">Bilgisayarlı Arıza Tespit</h3>
+           <p class="text-gray-600">Orijinal cihazlarla OBD üzerinden detaylı diyagnostik tarama.</p>
+        </article>
+        <article class="bg-gray-50 rounded-2xl p-8 shadow hover:shadow-lg transition">
+           <i class="fa-solid fa-microchip text-4xl text-blue-600 mb-4"></i>
+           <h3 class="font-bold text-xl mb-2">Beyin (ECU) Tamiri</h3>
+           <p class="text-gray-600">Motor beyni, ABS beyni ve Airbag ünitelerinin kart tamiri ve değişimi.</p>
+        </article>
+        <article class="bg-gray-50 rounded-2xl p-8 shadow hover:shadow-lg transition">
+           <i class="fa-solid fa-key text-4xl text-blue-600 mb-4"></i>
+           <h3 class="font-bold text-xl mb-2">Kodlama & Adaptasyon</h3>
+           <p class="text-gray-600">Gizli özellik açma, anahtar kodlama ve parça adaptasyon işlemleri.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="chiptuning-services" class="py-20 bg-gray-900 text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-red-600 blur-[150px] opacity-20"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+        
+        <div class="lg:w-1/2">
+          <span class="text-red-500 font-bold tracking-widest text-sm uppercase">Performansın Zirvesi</span>
+          <h2 class="text-3xl md:text-5xl font-bold text-white mt-2">Aracınızın Gerçek <br>Gücünü Keşfedin</h2>
+          <p class="mt-6 text-gray-300 text-lg leading-relaxed">
+            Fabrikanın kısıtladığı limitleri kaldırıyoruz. Lisanslı cihazlar ve profesyonel ekibimizle aracınızın motor ömrünü koruyarak maksimum Beygir ve Tork artışı sağlıyoruz.
+          </p>
+          
+          <div class="mt-8 space-y-4">
+            
+            <div class="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center justify-between hover:bg-white/10 transition group">
+                <div>
+                    <h4 class="text-xl font-bold text-red-500 group-hover:text-white transition">Stage 1 <span class="text-xs text-gray-400 font-normal ml-2">(Soft Yazılım)</span></h4>
+                    <p class="text-sm text-gray-400 mt-1">Orijinal donanım ile güvenli güç artışı.</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-xl font-bold text-white">+35-50 <span class="text-sm text-red-500">HP</span></div>
+                    <div class="text-sm text-gray-400">+60-80 <span class="text-xs">Nm Tork</span></div>
+                </div>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center justify-between hover:bg-white/10 transition group">
+                <div>
+                    <h4 class="text-xl font-bold text-red-500 group-hover:text-white transition">Stage 2 <span class="text-xs text-gray-400 font-normal ml-2">(Donanımlı)</span></h4>
+                    <p class="text-sm text-gray-400 mt-1">Egzoz ve soğutma destekli yüksek performans.</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-xl font-bold text-white">+50-80 <span class="text-sm text-red-500">HP</span></div>
+                    <div class="text-sm text-gray-400">+100-120 <span class="text-xs">Nm Tork</span></div>
+                </div>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center justify-between hover:bg-white/10 transition group">
+                <div>
+                    <h4 class="text-xl font-bold text-red-500 group-hover:text-white transition">Stage 3 <span class="text-xs text-gray-400 font-normal ml-2">(Project)</span></h4>
+                    <p class="text-sm text-gray-400 mt-1">Turbo büyütme ve motor içi güçlendirme.</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-xl font-bold text-white">+100 <span class="text-sm text-red-500">HP</span> Üzeri</div>
+                    <div class="text-sm text-gray-400">+150 <span class="text-xs">Nm</span> Üzeri</div>
+                </div>
+            </div>
+
+          </div>
+
+          <div class="mt-8 flex items-center gap-4">
+              <a href="randevu.html" class="inline-block px-8 py-3 bg-red-600 rounded-full font-bold hover:bg-red-500 transition shadow-lg shadow-red-600/30">Hemen Güçlendir</a>
+              <p class="text-xs text-gray-500">*Değerler araç marka/modeline göre değişiklik gösterebilir.</p>
+          </div>
+        </div>
+
+        <div class="lg:w-1/2 relative mt-10 lg:mt-0">
+           <div class="absolute inset-0 bg-red-600 blur-3xl opacity-20 rounded-full"></div>
+           <img src="./img/slides/hellcat5.jpg" alt="Dyno Test Performans" class="relative rounded-2xl shadow-2xl border-4 border-gray-800 transform hover:scale-105 transition duration-500 w-full object-cover" />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" x-data="menu()" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Parça & İşçilik Galerisi</h2>
+        <p class="text-gray-600">Yaptığımız onarımlardan örnekler ve stoğumuzdaki orijinal yedek parçalar.</p>
+      </div>
+      
+      <div class="flex justify-center mb-10">
+         <div class="bg-white p-2 rounded-full shadow-md inline-flex flex-wrap justify-center gap-2">
+            <template x-for="(tab, index) in tabs" :key="index">
+               <button 
+                  @click="currentIndex = index" 
+                  class="px-6 py-2.5 rounded-full font-bold transition duration-300 text-sm sm:text-base flex items-center gap-2"
+                  :class="currentIndex === index ? 'bg-red-600 text-white shadow-lg transform scale-105' : 'text-gray-500 hover:bg-gray-100 hover:text-red-600'">
+                  <i x-show="index === 0" class="fa-solid fa-wrench"></i>
+                  <i x-show="index === 1" class="fa-solid fa-microchip"></i>
+                  <i x-show="index === 2" class="fa-solid fa-boxes-stacked"></i>
+                  <span x-text="tab"></span>
+               </button>
+            </template>
+         </div>
+      </div>
+
+      <div class="min-h-[1000px]">
+         
+         <div x-show="currentIndex === 0" x-transition.opacity.duration.500ms class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <template x-for="item in Mechanics" :key="item.name">
+               <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100">
+                  <div class="h-64 overflow-hidden relative">
+                     <img :src="item.image" :alt="item.name" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <a href="randevu.html" class="px-6 py-2 bg-red-600 text-white rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition">Bilgi Al</a>
+                     </div>
+                  </div>
+                  <div class="p-6">
+                     <h4 x-text="item.name" class="font-bold text-xl text-gray-800 mb-2"></h4>
+                     <p class="text-sm text-gray-500">Profesyonel işçilik ve 1 yıl garanti ile onarım.</p>
+                  </div>
+               </div>
+            </template>
+         </div>
+
+         <div x-show="currentIndex === 1" x-transition.opacity.duration.500ms class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <template x-for="item in Electronics" :key="item.name">
+               <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300 border border-gray-100">
+                  <div class="h-64 overflow-hidden relative">
+                     <div class="absolute top-4 left-4 z-10 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">GARANTİLİ</div>
+                     <img :src="item.image" :alt="item.name" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                  </div>
+                  <div class="p-6">
+                     <h4 x-text="item.name" class="font-bold text-xl text-gray-800 mb-2"></h4>
+                     <p class="text-sm text-gray-500">Yüksek teknoloji cihazlarla tamir ve programlama.</p>
+                  </div>
+               </div>
+            </template>
+         </div>
+
+         <div x-show="currentIndex === 2" x-transition.opacity.duration.500ms class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <template x-for="item in Spareparts" :key="item.name">
+               <div class="bg-white p-5 rounded-2xl shadow hover:shadow-xl transition border border-gray-200 flex flex-col h-full relative group">
+                  <div class="absolute top-4 right-4 text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded">STOKTA VAR</div>
+                  
+                  <div class="h-48 rounded-xl overflow-hidden bg-gray-100 mb-4 p-2">
+                      <img :src="item.image" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition duration-500">
+                  </div>
+                  
+                  <div class="flex-1">
+                     <span x-text="item.type" class="text-xs font-bold text-red-600 uppercase tracking-wider"></span>
+                     <h3 x-text="item.name" class="font-bold text-gray-900 text-lg mt-1 mb-2"></h3>
+                     <p class="text-sm text-gray-500 line-clamp-2">Orijinal veya A+ Kalite eşdeğer yedek parça.</p>
+                  </div>
+                  
+                  <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+                     <span class="text-gray-400 text-sm">Fiyat Sorunuz</span>
+                     <a :href="'https://wa.me/905073885115?text=Merhaba, ' + item.name + ' hakkında fiyat almak istiyorum.'" 
+                        target="_blank"
+                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition">
+                        <i class="fa-brands fa-whatsapp"></i> Sipariş
+                     </a>
+                  </div>
+               </div>
+            </template>
+         </div>
+
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="randevu.html" class="inline-block border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-full font-bold hover:bg-gray-800 hover:text-white transition">Aradığınızı Bulamadınız mı?</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="references" x-data="references()" class="py-20 bg-white">
+     <div class="container mx-auto px-4">
+        <div class="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+           <div class="md:w-1/3 bg-red-600 p-10 flex flex-col justify-center text-white relative">
+              <h3 class="text-3xl font-bold mb-4">Müşterilerimiz Ne Diyor?</h3>
+              <p class="opacity-90 mb-8">Google Maps ve sosyal medya yorumlarından seçmeler.</p>
+              <div class="flex gap-4">
+                 <button @click="change(currentIndex - 1)" class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-red-600 transition">
+                    <i class="fa-solid fa-arrow-left"></i>
+                 </button>
+                 <button @click="change(currentIndex + 1)" class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white hover:text-red-600 transition">
+                    <i class="fa-solid fa-arrow-right"></i>
+                 </button>
+              </div>
+           </div>
+           <div class="md:w-2/3 p-10 md:p-16 flex items-center bg-gray-800 text-white relative min-h-[300px]">
+              <i class="fa-solid fa-quote-right absolute top-8 right-8 text-6xl text-gray-700 opacity-50"></i>
+              <template x-for="(comment, index) in comments" :key="index">
+                 <div x-show="currentIndex === index" x-transition.opacity.duration.500ms>
+                    <p x-text="comment.message" class="text-xl md:text-2xl font-light italic leading-relaxed"></p>
+                    <div class="mt-6 flex items-center gap-3">
+                       <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-lg font-bold">
+                          <span x-text="comment.fullname.charAt(0)"></span>
+                       </div>
+                       <span x-text="comment.fullname" class="font-bold text-gray-300"></span>
+                    </div>
+                 </div>
+              </template>
+           </div>
+        </div>
+     </div>
+  </section>
+
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+       <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800">İletişim & Konum</h2>
+          <p class="mt-2 text-gray-600">Randevu almak veya fiyat sormak için bize ulaşın.</p>
+       </div>
+
+       <div class="grid lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-1 space-y-6">
+             <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start gap-4">
+                <div class="bg-red-100 p-3 rounded-lg text-red-600"><i class="fa-solid fa-phone text-xl"></i></div>
+                <div>
+                   <h4 class="font-bold text-gray-900">Telefon</h4>
+                   <a href="tel:+905358424178" class="text-gray-600 hover:text-red-600 transition block mt-1">+90 535 842 41 78</a>
+                   <a href="tel:+902126532660" class="text-gray-600 hover:text-red-600 transition block">(0212) 653 26 60</a>
+                </div>
+             </div>
+
+             <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start gap-4">
+                <div class="bg-red-100 p-3 rounded-lg text-red-600"><i class="fa-solid fa-location-dot text-xl"></i></div>
+                <div>
+                   <h4 class="font-bold text-gray-900">Adres</h4>
+                   <p class="text-gray-600 mt-1 text-sm">Kocasinan Sanayi Sitesi, B1 Blok No:10, Bahçelievler / İstanbul</p>
+                   <a href="https://maps.google.com/dir/41.0985222,28.9697186/Toros+Elektronik,+Kocasinan+Sanayi+Sitesi+B1+Blok+No:10,+Kocasinan+Merkez,+34180+Bah%C3%A7elievler%2F%C4%B0stanbul/@41.0487351,28.7273582,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x14caa5d9e47e0f89:0xb3072b61439aebbd!2m2!1d28.8440681!2d41.0122451?entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoASAFQAw%3D%3D#Location" target="_blank" class="text-red-600 text-sm font-semibold mt-2 inline-block">Yol Tarifi Al →</a>
+                </div>
+             </div>
+             
+             <div class="bg-white p-6 rounded-2xl shadow-sm flex items-start gap-4">
+                <div class="bg-red-100 p-3 rounded-lg text-red-600"><i class="fa-solid fa-clock text-xl"></i></div>
+                <div>
+                   <h4 class="font-bold text-gray-900">Çalışma Saatleri</h4>
+                   <p class="text-gray-600 mt-1 text-sm">Pzt - Cuma: 08:00 - 19:00</p>
+                   <p class="text-gray-600 text-sm">Cumartesi: 08:00 - 18:00</p>
+                </div>
+             </div>
+          </div>
+
+          <div class="lg:col-span-2 space-y-8">
+             <div class="bg-white p-8 rounded-2xl shadow-sm">
+                <h3 class="text-xl font-bold mb-6">Bize Mesaj Gönderin</h3>
+                
+                <form id="contact-form" action="https://formspree.io/f/movgnloo" method="POST" class="space-y-4">
+                   <div class="grid md:grid-cols-2 gap-4">
+                      <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-1">Ad Soyad</label>
+                         <input type="text" name="name" required class="w-full border-gray-300 bg-gray-50 rounded-lg p-3 focus:ring-red-500 focus:border-red-500 outline-none transition" placeholder="Ahmet Yılmaz">
+                      </div>
+                      <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-1">Telefon</label>
+                         <input type="tel" name="phone" required class="w-full border-gray-300 bg-gray-50 rounded-lg p-3 focus:ring-red-500 focus:border-red-500 outline-none transition" placeholder="0532 123 45 67">
+                      </div>
+                   </div>
+                   <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-1">Mesajınız</label>
+                      <textarea name="message" rows="4" required class="w-full border-gray-300 bg-gray-50 rounded-lg p-3 focus:ring-red-500 focus:border-red-500 outline-none transition resize-none" placeholder="Aracımda tekleme sorunu var..."></textarea>
+                   </div>
+                   <button type="submit" class="bg-gray-900 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-600 transition w-full md:w-auto">Gönder</button>
+                   <p id="form-status" class="text-sm mt-2 hidden"></p>
+                </form>
+             </div>
+
+             <div class="rounded-2xl overflow-hidden shadow-sm h-64 bg-gray-200">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12035.61788434099!2d28.8440681!3d41.0122451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa5d9e47e0f89%3A0xb3072b61439aebbd!2sToros%20Elektronik!5e0!3m2!1str!2str!4v1715869565910!5m2!1str!2str"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+             </div>
+          </div>
+       </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-white pt-16 pb-6 border-t border-gray-800">
+     <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+           <div>
+              <div class="flex items-center gap-2 mb-4">
+                 <img src="./img/mechanic/skyline.jpg" class="w-10 h-10 rounded-full border border-gray-600">
+                 <span class="font-bold text-xl">TOROS<span class="text-red-500">AUTO</span></span>
+              </div>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                 Bahçelievler'in en kapsamlı oto servis ve elektronik çözümleri. Aracınız emin ellerde.
+              </p>
+           </div>
+           
+           <div>
+              <h5 class="font-bold text-lg mb-4">Hızlı Erişim</h5>
+              <ul class="space-y-2 text-gray-400 text-sm">
+                 <li><a href="#mechanic-services" class="hover:text-red-500 transition">Mekanik Servis</a></li>
+                 <li><a href="#electronic-services" class="hover:text-red-500 transition">Oto Elektronik</a></li>
+                 <li><a href="#chiptuning-services" class="hover:text-red-500 transition">Chip Tuning</a></li>
+                 <li><a href="#contact" class="hover:text-red-500 transition">Randevu Al</a></li>
+              </ul>
+           </div>
+
+           <div>
+              <h5 class="font-bold text-lg mb-4">İletişim</h5>
+              <ul class="space-y-2 text-gray-400 text-sm">
+                 <li><i class="fa-solid fa-phone mr-2 text-red-500"></i> 0535 842 41 78</li>
+                 <li><i class="fa-solid fa-envelope mr-2 text-red-500"></i> info@torosotomotiv.com</li>
+                 <li><i class="fa-solid fa-location-dot mr-2 text-red-500"></i> Kocasinan San. Sit. B1 Blok No:10</li>
+              </ul>
+           </div>
+
+           <div>
+              <h5 class="font-bold text-lg mb-4">Sosyal Medya</h5>
+              <div class="flex gap-4">
+                 <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                 <a href="https://www.instagram.com/toros_automotive/" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                 <a href="https://wa.me/905073885115" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 transition"><i class="fa-brands fa-whatsapp"></i></a>
+              </div>
+           </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+           <p>&copy; 2025 Toros Automotive. Tüm hakları saklıdır.</p>
+        </div>
+     </div>
+  </footer>
+
+  <script>
+    document.addEventListener('alpine:init', () => {
+      
+      // Header Component
+      Alpine.data('header', () => ({
+        mobilemenu: false
+      }));
+
+      // Slider Component
+      Alpine.data('slider', () => ({
+        slides: [
+          { src: './img/slides/hellcat2.jpg', alt: 'Hellcat Performans' },
+          { src: './img/slides/mustang.jpg', alt: 'Mustang Dyno Testi' },
+          { src: './img/slides/hellcat5.jpg', alt: 'Toros Oto Servis Atölye' }
+        ],
+        currentIndex: 0,
+        interval: null,
+        init() {
+           this.interval = setInterval(() => { this.next() }, 5000);
+        },
+        next() {
+           this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+        },
+        prev() {
+           this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+        }
+      }));
+
+      // Menu / Products Component (Düzeltildi: Tekrar eden kodlar silindi)
+      Alpine.data('menu', () => ({
+        tabs: ['Mekanik', 'Elektronik', 'Yedek Parça'],
+        currentIndex: 0,
+        Mechanics: [
+           { name: 'Motor Rektifiye', image: './img/mechanic/mechanic1.jpg' },
+           { name: 'Şanzıman', image: './img/mechanic/mechanic2.jpg' },
+           { name: 'Süspansiyon', image: './img/mechanic/mechanic3.jpg' },
+           { name: 'Fren Sistemleri', image: './img/mechanic/mechanic4.jpg' },
+           { name: 'Direksiyon Kutusu', image: './img/mechanic/mechanic5.jpg' },
+           { name: 'Ön Takım', image: './img/mechanic/mechanic6.jpg' },
+           { name: 'Yağ Bakımı', image: './img/mechanic/mechanic7.jpg' },
+           { name: 'Klima ve Isıtma Sistemleri', image: './img/mechanic/mechanic8.jpg' },
+           { name: 'Egsoz Sistemi', image: './img/mechanic/mechanic9.jpg' }
+   
+      ],   
+
+        Electronics: [
+           { name: 'Motor Beyni (ECU)', image: './img/electronics/indir.jpg' },
+           { name: 'ABS Beyni', image: './img/electronics/abs beyni.jpg' },
+           { name: 'Airbag Ünitesi', image: './img/electronics/airbag.jpg' },
+           { name: 'Body Beyni', image: './img/electronics/body.jpg' },
+           { name: 'Gösterge Beyni', image: './img/electronics/indicator.jpg' }
+           
+        ],
+        Spareparts: [
+           { name: 'Fren Balatası', type: 'Fren', image: './img/spare parts/balata.jpg' },
+           { name: 'Fren Diski ', type: 'Fren', image: './img/spare parts/disk.jpg' },
+           { name: 'Motor Yağı', type: 'Sıvılar', image: './img/spare parts/motor yağı.jpg' },
+           { name: 'Mazot filtresi', type: 'Sıvılar', image: './img/spare parts/mazot filtresi.jpg' },
+           { name: 'Yağ Filtresi', type: 'Sıvılar', image: './img/spare parts/yağ filtresi.jpg' },
+           { name: 'Hava Filtresi', type: 'Filtre', image: './img/spare parts/açık hava filtresi.jpg' }
+       ],
+      }));
+
+      // References Component
+      Alpine.data('references', () => ({
+         comments: [
+            { message: 'Renault Master aracımın ECU onarımını yaptılar, sıfır parça almaktan kurtardılar. İşçilik harika.', fullname: 'Ahmet Yılmaz' },
+            { message: 'Fiat Ducato kronik sorunlarımı çözdüler. Bahçelievler sanayide tek geçerim.', fullname: 'Mehmet Demir' },
+            { message: 'Chiptuning sonrası aracımın yakıtı düştü, çekişi arttı. Tavsiye ederim.', fullname: 'Caner Erkin' }
+         ],
+         currentIndex: 0,
+         change(index) {
+            if(index < 0) this.currentIndex = this.comments.length - 1;
+            else if(index >= this.comments.length) this.currentIndex = 0;
+            else this.currentIndex = index;
+         }
+      }));
+    });
+
+    // Basit Form Gönderimi (Formspree AJAX Örneği)
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const data = new FormData(event.target);
+      status.classList.remove('hidden');
+      status.innerText = "Gönderiliyor...";
+      
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          status.innerText = "Mesajınız başarıyla alındı! Teşekkürler.";
+          status.className = "text-sm mt-2 text-green-600";
+          form.reset();
+        } else {
+          status.innerText = "Bir hata oluştu. Lütfen telefon ile ulaşın.";
+          status.className = "text-sm mt-2 text-red-600";
+        }
+      }).catch(error => {
+        status.innerText = "Bir hata oluştu.";
+        status.className = "text-sm mt-2 text-red-600";
+      });
+    });
+  </script>
+  <a href="https://wa.me/905073885115?text=Merhaba,%20hizmetleriniz%20hakkında%20bilgi%20almak%20istiyorum." 
+   class="whatsapp-float whatsapp-pulse" 
+   target="_blank" 
+   aria-label="WhatsApp ile İletişime Geç">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+</body>
+</html>

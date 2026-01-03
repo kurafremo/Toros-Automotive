@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hizmet Verdiğimiz Araçlar | Toros Automotive</title>
+  <meta name="description" content="Toros Automotive olarak bakım ve onarımını yaptığımız binek ve ticari araç markaları." />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js"></script>
+
+  <style>
+    .nav-blur { backdrop-filter: saturate(150%) blur(12px); background-color: rgba(17, 24, 39, 0.9); }
+    [x-cloak] { display: none !important; }
+    /* Marka kutuları için hover efekti */
+    .brand-box:hover { transform: translateY(-5px); border-color: #EF4444; }
+  </style>
+</head>
+<body class="antialiased text-gray-800 bg-gray-50">
+
+  <header x-data="header()" class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-gray-800">
+    <div class="container mx-auto px-4 lg:px-6 py-3 flex items-center">
+      
+      <a href="index.html" class="inline-flex items-center gap-2 flex-shrink-0" aria-label="Ana Sayfa">
+        <img src="./img/mechanic/skyline.jpg" alt="Toros Automotive Logo" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-red-600" />
+        <span class="text-white font-bold text-lg md:text-xl tracking-wide hidden sm:block">TOROS<span class="text-red-600">AUTO</span></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 mx-auto" aria-label="Ana menü">
+        <a href="index.html#about" class="text-gray-300 hover:text-white font-medium transition text-sm xl:text-base">Hakkımızda</a>
+
+        <div class="relative" x-data="{ open: false }" @mouseenter="open=true" @mouseleave="open=false">
+            <button class="inline-flex items-center gap-1 text-gray-300 hover:text-white font-medium transition py-2 text-sm xl:text-base">
+              Araçlar
+              <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+            <div x-cloak x-show="open" x-transition.opacity.duration.200ms class="absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-xl shadow-xl py-2 border-t-4 border-red-600">
+              <a href="araclar.html#binek" class="block px-4 py-3 hover:bg-gray-50 text-gray-800 border-b border-gray-100">
+                <i class="fa-solid fa-car-side w-5 text-red-600 mr-2"></i> Binek Araçlar
+              </a>
+              <a href="araclar.html#ticari" class="block px-4 py-3 hover:bg-gray-50 text-gray-800">
+                <i class="fa-solid fa-truck-front w-5 text-red-600 mr-2"></i> Ticari Araçlar
+              </a>
+            </div>
+        </div>
+
+        <div class="relative" x-data="{ open: false }" @mouseenter="open=true" @mouseleave="open=false">
+          <button class="inline-flex items-center gap-1 text-gray-300 hover:text-white font-medium transition py-2 text-sm xl:text-base">
+            Hizmetlerimiz
+            <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div x-cloak x-show="open" x-transition.opacity.duration.200ms class="absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-xl shadow-xl py-2 border-t-4 border-red-600">
+            <a href="index.html#mechanic-services" class="block px-4 py-3 hover:bg-gray-50 text-gray-800"><i class="fa-solid fa-wrench w-5 text-red-600 mr-2"></i> Mekanik Hizmetler</a>
+            <a href="index.html#electronic-services" class="block px-4 py-3 hover:bg-gray-50 text-gray-800"><i class="fa-solid fa-microchip w-5 text-red-600 mr-2"></i> Elektronik Hizmetler</a>
+            <a href="index.html#chiptuning-services" class="block px-4 py-3 hover:bg-gray-50 text-gray-800"><i class="fa-solid fa-gauge-high w-5 text-red-600 mr-2"></i> Chiptuning</a>
+          </div>
+        </div>
+
+        <a href="index.html#menu" class="text-gray-300 hover:text-white font-medium transition text-sm xl:text-base">Ürün & Kategoriler</a>
+        <a href="index.html#references" class="text-gray-300 hover:text-white font-medium transition text-sm xl:text-base">Referanslar</a>
+        <a href="index.html#contact" class="text-gray-300 hover:text-white font-medium transition text-sm xl:text-base">İletişim</a>
+      </nav>
+
+      <div class="hidden lg:block flex-shrink-0">
+        <a href="randevu.html" class="px-6 py-2.5 text-sm font-bold text-white bg-red-600 rounded-full shadow-lg hover:bg-red-700 transition transform hover:-translate-y-0.5">Randevu Al</a>
+      </div>
+
+      <button @click="mobilemenu = !mobilemenu" class="lg:hidden ml-auto p-2 text-white hover:text-red-500 transition">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+    <div x-cloak x-show="mobilemenu" x-collapse class="lg:hidden bg-gray-900 border-t border-gray-800">
+      <div class="flex flex-col p-4 space-y-2">
+        <a href="index.html#about" @click="mobilemenu=false" class="text-gray-300 hover:text-white py-2">Hakkımızda</a>
+        
+        <div x-data="{ subOpen: false }">
+            <button @click="subOpen = !subOpen" class="flex items-center justify-between w-full text-gray-300 hover:text-white py-2">
+              Araçlar <i class="fa-solid fa-chevron-down text-xs"></i>
+            </button>
+            <div x-show="subOpen" x-collapse class="pl-4 border-l-2 border-gray-700 mt-1 space-y-2">
+               <a href="araclar.html#binek" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Binek Araçlar</a>
+               <a href="araclar.html#ticari" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Ticari Araçlar</a>
+            </div>
+        </div>
+
+        <div x-data="{ subOpen: false }">
+          <button @click="subOpen = !subOpen" class="flex items-center justify-between w-full text-gray-300 hover:text-white py-2">
+            Hizmetlerimiz <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div x-show="subOpen" x-collapse class="pl-4 border-l-2 border-gray-700 mt-1 space-y-2">
+             <a href="index.html#mechanic-services" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Mekanik</a>
+             <a href="index.html#electronic-services" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Elektronik</a>
+             <a href="index.html#chiptuning-services" @click="mobilemenu=false" class="block text-sm text-gray-400 py-1">Chiptuning</a>
+          </div>
+        </div>
+        
+        <a href="index.html#menu" @click="mobilemenu=false" class="text-gray-300 hover:text-white py-2">Ürün & Kategoriler</a>
+        <a href="index.html#contact" @click="mobilemenu=false" class="text-gray-300 hover:text-white py-2">İletişim</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="pt-32 pb-12 bg-gray-900 text-center px-4">
+    <h1 class="text-3xl md:text-5xl font-bold text-white">Hizmet Verdiğimiz Markalar</h1>
+    <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Uzmanlık alanımızdaki araç grupları. Aşağıdaki tüm markalar için mekanik, elektronik ve yazılım desteği sunuyoruz.</p>
+  </div>
+
+  <section id="binek" class="py-20 container mx-auto px-4">
+    <div class="flex items-center gap-4 mb-8">
+        <div class="p-3 bg-red-100 rounded-lg text-red-600"><i class="fa-solid fa-car-side text-2xl"></i></div>
+        <h2 class="text-3xl font-bold text-gray-800">Binek Araçlar</h2>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-car text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">BMW</span>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-car text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Mercedes</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-car text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Audi</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-car text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Volkswagen</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-car text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Renault</span>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-car text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Fiat</span>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-car text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Opel</span>
+        </div>
+    </div>
+  </section>
+
+  <hr class="border-gray-300 container mx-auto">
+
+  <section id="ticari" class="py-20 container mx-auto px-4">
+    <div class="flex items-center gap-4 mb-8">
+        <div class="p-3 bg-blue-100 rounded-lg text-blue-600"><i class="fa-solid fa-truck-front text-2xl"></i></div>
+        <h2 class="text-3xl font-bold text-gray-800">Ticari Araçlar</h2>
+    </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-truck text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Fiat Ducato</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-truck text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Renault Master</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-truck text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Citroen Jumper</span>
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-truck text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Peugeot Boxer</span>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 brand-box transition duration-300 flex flex-col items-center justify-center gap-3">
+            <i class="fa-solid fa-truck text-4xl text-gray-400"></i> 
+            <span class="font-bold text-gray-700">Mercedes Sprinter</span>
+        </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-white py-8 text-center border-t border-gray-800">
+    <p>© 2025 Toros Automotive - Tüm Hakları Saklıdır.</p>
+    <a href="index.html" class="text-red-500 hover:underline mt-2 block">Ana Sayfaya Dön</a>
+  </footer>
+ <a href="https://wa.me/905073885115?text=Merhaba,%20hizmetleriniz%20hakkında%20bilgi%20almak%20istiyorum." 
+   class="whatsapp-float whatsapp-pulse" 
+   target="_blank" 
+   aria-label="WhatsApp ile İletişime Geç">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+</body>
+</html>

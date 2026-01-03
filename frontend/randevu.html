@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Randevu Al | Toros Automotive</title>
+  <meta name="description" content="Hızlı ve kolay online servis randevusu oluşturun. Mekanik, elektronik ve chiptuning hizmetleri." />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+
+  <style>
+    .nav-blur { backdrop-filter: saturate(150%) blur(12px); background-color: rgba(17, 24, 39, 0.9); }
+    [x-cloak] { display: none !important; }
+  </style>
+</head>
+<body class="antialiased text-gray-800 bg-gray-50">
+
+  <header x-data="{ mobilemenu: false }" class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-gray-800">
+    <div class="container mx-auto px-4 lg:px-6 py-3 flex items-center justify-between">
+      
+      <a href="index.html" class="inline-flex items-center gap-2">
+        <img src="./img/mechanic/skyline.jpg" alt="Logo" class="w-12 h-12 rounded-full object-cover border-2 border-red-600" />
+        <span class="text-white font-bold text-lg hidden sm:block">TOROS<span class="text-red-600">AUTO</span></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 mx-auto">
+        <a href="index.html" class="text-gray-300 hover:text-white font-medium transition">Ana Sayfa</a>
+        <a href="araclar.html" class="text-gray-300 hover:text-white font-medium transition">Araçlar</a>
+        <a href="index.html#contact" class="text-gray-300 hover:text-white font-medium transition">İletişim</a>
+      </nav>
+
+      <div class="hidden lg:block">
+        <a href="index.html" class="px-6 py-2.5 text-sm font-bold border border-gray-600 text-white rounded-full hover:bg-white hover:text-black transition">
+            <i class="fa-solid fa-arrow-left mr-2"></i> Geri Dön
+        </a>
+      </div>
+
+      <button @click="mobilemenu = !mobilemenu" class="lg:hidden p-2 text-white">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+    <div x-show="mobilemenu" class="lg:hidden bg-gray-900 border-t border-gray-800 p-4">
+        <a href="index.html" class="block text-gray-300 py-2">Ana Sayfa</a>
+        <a href="araclar.html" class="block text-gray-300 py-2">Araçlar</a>
+    </div>
+  </header>
+
+  <section class="min-h-screen pt-28 pb-12 px-4 flex items-center justify-center bg-[url('./img/slides/hellcat2.jpg')] bg-cover bg-center bg-fixed relative">
+    
+    <div class="absolute inset-0 bg-black/70"></div>
+
+    <div class="relative z-10 w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+        
+        <div class="md:w-1/3 bg-gray-900 p-8 text-white flex flex-col justify-between">
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Servis Randevusu</h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Formu doldurarak dilediğiniz tarih ve saat için ön talep oluşturabilirsiniz. Müşteri temsilcimiz sizi arayıp onaylayacaktır.
+                </p>
+            </div>
+            <div class="mt-8 space-y-4">
+                <div class="flex items-center gap-3 text-sm">
+                    <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center"><i class="fa-solid fa-phone"></i></div>
+                    <span>0507 388 51 15</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm">
+                    <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center"><i class="fa-solid fa-location-dot"></i></div>
+                    <span>Bahçelievler / İstanbul</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:w-2/3 p-8 md:p-10 bg-white">
+            <h3 class="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-red-600 pl-3">Araç & İletişim Bilgileri</h3>
+            
+            <form id="appointment-form" class="space-y-5">
+                
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Ad Soyad</label>
+                        <input type="text" name="name" required class="w-full border-b-2 border-gray-200 focus:border-red-600 outline-none py-2 transition bg-transparent" placeholder="Örn: Ahmet Yılmaz">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Telefon</label>
+                        <input type="tel" name="phone" required class="w-full border-b-2 border-gray-200 focus:border-red-600 outline-none py-2 transition bg-transparent" placeholder="05XX XXX XX XX">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Araç Marka / Model</label>
+                        <input type="text" name="car_model" class="w-full border-b-2 border-gray-200 focus:border-red-600 outline-none py-2 transition bg-transparent" placeholder="Örn: BMW 320i 2015">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Hizmet Türü</label>
+                        <select name="service_type" class="w-full border-b-2 border-gray-200 focus:border-red-600 outline-none py-2 transition bg-transparent cursor-pointer">
+                            <option value="Periyodik Bakım">Periyodik Bakım</option>
+                            <option value="Mekanik Arıza">Mekanik Arıza</option>
+                            <option value="Elektronik Arıza">Elektronik Arıza</option>
+                            <option value="Chiptuning">Chiptuning / Yazılım</option>
+                            <option value="Diğer">Diğer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">İstenilen Tarih</label>
+                    <input type="date" name="date" required class="w-full border-b-2 border-gray-200 focus:border-red-600 outline-none py-2 transition bg-transparent text-gray-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Notunuz / Şikayetiniz</label>
+                    <textarea name="description" rows="2" class="w-full border-b-2 border-gray-200 focus:border-red-600 outline-none py-2 transition bg-transparent resize-none" placeholder="Motordan ses geliyor, frenler ötüyor vb."></textarea>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-red-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-red-700 hover:shadow-red-500/30 transition transform hover:-translate-y-1">
+                        Randevu Oluştur
+                    </button>
+                </div>
+
+                <div id="form-message" class="hidden p-4 rounded-lg text-sm font-medium text-center"></div>
+
+            </form>
+        </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById("appointment-form");
+    const messageBox = document.getElementById("form-message");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        // Butonu pasif yap (Çift tıklamayı önle)
+        const btn = form.querySelector("button");
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = "İşleniyor...";
+
+        const formData = {
+            name: form.name.value,
+            phone: form.phone.value,
+            car_model: form.car_model.value,
+            service_type: form.service_type.value,
+            date: form.date.value,
+            description: form.description.value
+        };
+
+        try {
+            const response = await fetch('http://localhost:5000/api/appointment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            messageBox.classList.remove("hidden", "bg-green-100", "text-green-700", "bg-red-100", "text-red-700");
+
+            if(response.ok) {
+                // Başarılı
+                messageBox.classList.add("bg-green-100", "text-green-700");
+                messageBox.innerHTML = `<i class="fa-solid fa-check-circle mr-2"></i> ${result.msg}`;
+                form.reset();
+            } else {
+                // Hata (Validasyon vb.)
+                messageBox.classList.add("bg-red-100", "text-red-700");
+                messageBox.innerText = result.msg;
+            }
+
+        } catch (error) {
+            // Sunucu Hatası
+            messageBox.classList.remove("hidden");
+            messageBox.classList.add("bg-red-100", "text-red-700");
+            messageBox.innerText = "Sunucuya bağlanılamadı. Lütfen internet bağlantınızı kontrol edin.";
+        } finally {
+            // Butonu eski haline getir
+            btn.disabled = false;
+            btn.innerText = originalText;
+        }
+    });
+  </script>
+  <a href="https://wa.me/905073885115?text=Merhaba,%20hizmetleriniz%20hakkında%20bilgi%20almak%20istiyorum." 
+   class="whatsapp-float whatsapp-pulse" 
+   target="_blank" 
+   aria-label="WhatsApp ile İletişime Geç">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+</body>
+</html>

@@ -1,0 +1,107 @@
+/* style.css - Toros Automotive Custom Styles */
+
+/* 1. Tüm site için yumuşak kaydırma efekti */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. Metin seçildiğinde (mouse ile tarandığında) çıkacak renk */
+::selection {
+    background-color: #DC2626; /* Tailwind 'red-600' rengi */
+    color: white;
+}
+
+/* 3. Özelleştirilmiş Kaydırma Çubuğu (Scrollbar) - Chrome, Edge, Safari */
+/* Çubuğun genişliği */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Çubuğun arka plan yolu (Gri ton) */
+::-webkit-scrollbar-track {
+    background: #111827; /* Tailwind 'gray-900' */
+}
+
+/* Hareket eden çubuk (Kırmızı) */
+::-webkit-scrollbar-thumb {
+    background: #DC2626; 
+    border-radius: 5px;
+    border: 2px solid #111827; /* Etrafında ince boşluk bırakır */
+}
+
+/* Çubuğun üzerine gelince (Daha koyu kırmızı) */
+::-webkit-scrollbar-thumb:hover {
+    background: #B91C1C; 
+}
+
+/* 4. Alpine.js Yüklenmeden Önce Gizleme (Sayfa açılışında titremeyi önler) */
+[x-cloak] { 
+    display: none !important; 
+}
+
+/* 5. Navigasyon Bulanıklığı (Cam Efekti) */
+.nav-blur {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: rgba(17, 24, 39, 0.85); /* Hafif şeffaf siyah */
+}
+
+/* 6. Slider Resimleri için İnce Ayar */
+/* Resimlerin kararmasını sağlayan gradient katmanı */
+.slider-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);
+}
+
+/* 7. Marka Kutuları (araclar.html için) */
+.brand-box {
+    transition: all 0.3s ease;
+}
+.brand-box:hover {
+    transform: translateY(-5px);
+    border-color: #DC2626;
+    box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.1);
+} 
+/* --- WhatsApp Sabit Buton --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;       /* Alttan boşluk */
+    right: 25px;        /* Sağdan boşluk */
+    z-index: 9999;      /* Her şeyin üstünde dursun */
+    background-color: #25d366; /* WhatsApp Orijinal Yeşili */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Tam yuvarlak */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;    /* İkon boyutu */
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    background-color: #20ba5a; /* Üzerine gelince koyulaş */
+    transform: scale(1.1);     /* Hafif büyüsün */
+}
+
+/* Kalp Atışı (Pulse) Animasyonu */
+.whatsapp-pulse {
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}

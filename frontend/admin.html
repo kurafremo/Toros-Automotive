@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toros Auto | Yönetim Paneli</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800" x-data="adminPanel()">
+
+    <div x-show="!isLoggedIn" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md text-center">
+            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-6">Yönetici Girişi</h2>
+            <form @submit.prevent="login">
+                <input type="password" x-model="password" placeholder="Şifre Giriniz" class="w-full p-3 border rounded-lg mb-4 focus:border-red-600 outline-none text-center text-lg">
+                <button type="submit" class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition">Giriş Yap</button>
+                <p x-show="loginError" class="text-red-500 mt-3 text-sm font-semibold">Hatalı şifre!</p>
+            </form>
+        </div>
+    </div>
+
+    <div x-cloak x-show="isLoggedIn" class="min-h-screen flex flex-col">
+        
+        <header class="bg-gray-900 text-white py-4 px-6 flex justify-between items-center shadow-lg">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-gauge-high text-red-500 text-2xl"></i>
+                <h1 class="text-xl font-bold">Toros Auto <span class="text-gray-400 font-normal">| Yönetim Paneli</span></h1>
+            </div>
+            <button @click="logout" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm transition">
+                <i class="fa-solid fa-right-from-bracket mr-2"></i>Çıkış
+            </button>
+        </header>
+
+        <main class="flex-1 container mx-auto p-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow border-l-4 border-blue-500 flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-bold uppercase">Toplam Randevu</p>
+                        <p class="text-3xl font-bold text-gray-800" x-text="appointments.length"></p>
+                    </div>
+                    <i class="fa-solid fa-calendar-check text-4xl text-blue-100"></i>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow border-l-4 border-green-500 flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-bold uppercase">Gelen Mesajlar</p>
+                        <p class="text-3xl font-bold text-gray-800" x-text="messages.length"></p>
+                    </div>
+                    <i class="fa-solid fa-envelope text-4xl text-green-100"></i>
+                </div>
+            </div>
+
+            <div class="flex gap-4 mb-6 border-b border-gray-300 pb-2">
+                <button @click="activeTab = 'appointments'" :class="activeTab === 'appointments' ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-500'" class="pb-2 px-4 font-bold text-lg transition">
+                    Randevular
+                </button>
+                <button @click="activeTab = 'messages'" :class="activeTab === 'messages' ? 'text-red-600 border-b-2 border-red-600' : 'text-gray-500'" class="pb-2 px-4 font-bold text-lg transition">
+                    İletişim Mesajları
+                </button>
+                <button @click="fetchData" class="ml-auto text-gray-500 hover:text-blue-600" title="Yenile">
+                    <i class="fa-solid fa-rotate"></i>
+                </button>
+            </div>
+
+            <div x-show="activeTab === 'appointments'" class="bg-white rounded-xl shadow overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-50 text-gray-600 uppercase text-xs">
+                            <tr>
+                                <th class="p-4">Tarih</th>
+                                <th class="p-4">Müşteri</th>
+                                <th class="p-4">Telefon</th>
+                                <th class="p-4">Araç & Hizmet</th>
+                                <th class="p-4">Not</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <template x-for="app in appointments" :key="app.id">
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-4 text-sm font-bold text-red-600" x-text="app.date"></td>
+                                    <td class="p-4 font-medium" x-text="app.name"></td>
+                                    <td class="p-4 text-gray-600">
+                                        <a :href="'tel:'+app.phone" class="hover:text-blue-600"><i class="fa-solid fa-phone mr-1"></i><span x-text="app.phone"></span></a>
+                                    </td>
+                                    <td class="p-4">
+                                        <div class="font-bold text-sm" x-text="app.car_model || '-'"></div>
+                                        <div class="text-xs text-gray-500 bg-gray-100 inline-block px-2 py-1 rounded mt-1" x-text="app.service_type"></div>
+                                    </td>
+                                    <td class="p-4 text-sm text-gray-500 italic" x-text="app.description || 'Yok'"></td>
+                                </tr>
+                            </template>
+                            <tr x-show="appointments.length === 0">
+                                <td colspan="5" class="p-8 text-center text-gray-500">Henüz randevu talebi yok.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div x-show="activeTab === 'messages'" class="bg-white rounded-xl shadow overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-50 text-gray-600 uppercase text-xs">
+                            <tr>
+                                <th class="p-4">Tarih</th>
+                                <th class="p-4">İsim</th>
+                                <th class="p-4">İletişim</th>
+                                <th class="p-4">Mesaj</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <template x-for="msg in messages" :key="msg.id">
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="p-4 text-xs text-gray-500" x-text="new Date(msg.created_at).toLocaleDateString('tr-TR')"></td>
+                                    <td class="p-4 font-medium" x-text="msg.name"></td>
+                                    <td class="p-4 text-sm">
+                                        <div x-text="msg.phone"></div>
+                                        <div class="text-gray-400 text-xs" x-text="msg.email"></div>
+                                    </td>
+                                    <td class="p-4 text-sm text-gray-600" x-text="msg.message"></td>
+                                </tr>
+                            </template>
+                            <tr x-show="messages.length === 0">
+                                <td colspan="4" class="p-8 text-center text-gray-500">Henüz mesaj yok.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('adminPanel', () => ({
+                isLoggedIn: localStorage.getItem('adminLogged') === 'true',
+                password: '',
+                loginError: false,
+                activeTab: 'appointments',
+                appointments: [],
+                messages: [],
+
+                init() {
+                    if (this.isLoggedIn) {
+                        this.fetchData();
+                    }
+                },
+
+                login() {
+                    // BASİT ŞİFRE KONTROLÜ (Bunu istediğin şifreyle değiştir)
+                    if (this.password === 'torosoto0134') { 
+                        this.isLoggedIn = true;
+                        localStorage.setItem('adminLogged', 'true');
+                        this.loginError = false;
+                        this.fetchData();
+                    } else {
+                        this.loginError = true;
+                    }
+                },
+
+                logout() {
+                    this.isLoggedIn = false;
+                    localStorage.removeItem('adminLogged');
+                    this.password = '';
+                },
+
+                async fetchData() {
+                    try {
+                        const res = await fetch('http://localhost:5000/api/all-data');
+                        const data = await res.json();
+                        this.appointments = data.appointments;
+                        this.messages = data.messages;
+                    } catch (err) {
+                        console.error("Veri çekme hatası:", err);
+                        alert("Veriler sunucudan alınamadı. Server.js'in çalıştığından emin olun.");
+                    }
+                }
+            }));
+        });
+    </script>
+</body>
+</html>
