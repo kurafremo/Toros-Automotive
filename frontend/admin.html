@@ -175,7 +175,7 @@
 
                 async fetchData() {
                     try {
-                        const res = await fetch('http://localhost:5000/api/all-data');
+                        const res = await fetch('/api/all-data');
                         const data = await res.json();
                         this.appointments = data.appointments;
                         this.messages = data.messages;
