@@ -1,8 +1,9 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { initDb, openDb } = require("./db"); // Veritabanı dosyamız
-const path = require("path");
+
 
 dotenv.config();
 const app = express();
@@ -12,11 +13,10 @@ app.use(express.json());
 
 // Statik dosyaları (HTML, CSS, IMG) sun
 // Not: backend klasöründen bir üst klasöre (..) çıkıp orayı sunuyoruz
-app.use(express.static(path.join(__dirname, '../')));
-
+app.use(express.static(path.join(__dirname, './')));
 // Ana sayfayı gönder
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Sunucu başlarken veritabanını hazırla
