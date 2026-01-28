@@ -1,90 +1,76 @@
-const path = require("path");
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const { initDb, openDb } = require("./db"); // Veritabanı dosyamız
+const path = require("path");
 
+// Modeller
+const Contact = require("./models/Contact");
+const Appointment = require("./models/Appointment");
 
 dotenv.config();
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Statik dosyaları (HTML, CSS, IMG) sun
-// Not: backend klasöründen bir üst klasöre (..) çıkıp orayı sunuyoruz
+// Statik Dosyaları Sun (Frontend ile bağlantı)
 app.use(express.static(path.join(__dirname, './')));
-// Ana sayfayı gönder
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
 
-// Sunucu başlarken veritabanını hazırla
-initDb();
+// 📌 MongoDB Bağlantısı (Render Environment'tan alır)
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Bağlantısı Başarılı! Veriler Güvende."))
+  .catch((err) => console.error("❌ Veritabanı Hatası:", err));
 
 // -------------------
-// 1. İLETİŞİM FORMU (SQL)
+// API ROTALARI
 // -------------------
+
+// 1. İletişim Formu Kaydet
 app.post("/api/contact", async (req, res) => {
   try {
     const { name, email, phone, message } = req.body;
-    
-    if (!name || !phone) {
-      return res.status(400).json({ msg: "İsim ve telefon zorunludur." });
-    }
-
-    const db = await openDb();
-    await db.run(
-      'INSERT INTO contacts (name, email, phone, message) VALUES (?, ?, ?, ?)',
-      [name, email, phone, message]
-    );
-
-    res.json({ success: true, msg: "Mesajınız başarıyla kaydedildi." });
+    const newContact = new Contact({ name, email, phone, message });
+    await newContact.save();
+    res.status(201).json({ success: true, msg: "Mesajınız kaydedildi." });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: "Sunucu hatası." });
+    res.status(500).json({ success: false, msg: "Bir hata oluştu." });
   }
 });
 
-// -------------------
-// 2. RANDEVU SİSTEMİ (SQL)
-// -------------------
+// 2. Randevu Kaydet
 app.post("/api/appointment", async (req, res) => {
   try {
     const { name, phone, car_model, service_type, date, description } = req.body;
-
-    // Basit doğrulama
-    if (!name || !phone || !date) {
-      return res.status(400).json({ msg: "Lütfen zorunlu alanları doldurun." });
-    }
-
-    const db = await openDb();
-    await db.run(
-      'INSERT INTO appointments (name, phone, car_model, service_type, date, description) VALUES (?, ?, ?, ?, ?, ?)',
-      [name, phone, car_model, service_type, date, description]
-    );
-
-    res.json({ success: true, msg: "Randevunuz oluşturuldu! Sizi arayacağız." });
+    const newAppointment = new Appointment({ 
+        name, phone, car_model, service_type, date, description 
+    });
+    await newAppointment.save();
+    res.status(201).json({ success: true, msg: "Randevunuz oluşturuldu!" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: "Randevu oluşturulamadı." });
+    res.status(500).json({ success: false, msg: "Randevu oluşturulamadı." });
   }
 });
 
-// -------------------
-// ADMİN PANELİ İÇİN VERİ ÇEKME
-// -------------------
+// 3. Admin Paneli İçin Tüm Verileri Çek
 app.get("/api/all-data", async (req, res) => {
   try {
-    const db = await openDb();
-    const messages = await db.all('SELECT * FROM contacts ORDER BY id DESC');
-    const appointments = await db.all('SELECT * FROM appointments ORDER BY id DESC');
-    
+    // En yeniden eskiye doğru sırala
+    const messages = await Contact.find().sort({ createdAt: -1 });
+    const appointments = await Appointment.find().sort({ createdAt: -1 });
     res.json({ messages, appointments });
   } catch (err) {
-    res.status(500).json({ msg: "Veri çekilemedi." });
+    res.status(500).json({ msg: "Veriler çekilemedi." });
   }
+});
+
+// Ana Sayfa Yönlendirmesi
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 SQL Sunucusu Çalışıyor: http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Sunucu Çalışıyor: http://localhost:${PORT}`));
