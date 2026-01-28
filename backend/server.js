@@ -68,7 +68,8 @@ app.get("/api/all-data", async (req, res) => {
 });
 
 // Ana Sayfa Yönlendirmesi
-app.get('*', (req, res) => {
+// Tırnakları kaldırdık ve /.*/ yaptık. Bu "her şeyi yakala" demektir.
+app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
